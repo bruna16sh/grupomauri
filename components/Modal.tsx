@@ -1,12 +1,12 @@
+
 import React from 'react';
 import { ModalProps } from '../types';
-import { X, Check } from 'lucide-react';
+import { X, Check, ArrowRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-const Modal: React.FC<ModalProps> = ({ isOpen, onClose, mode, serviceData }) => {
+const Modal: React.FC<ModalProps> = ({ isOpen, onClose, mode, serviceData, projectData }) => {
   const [submitted, setSubmitted] = React.useState(false);
 
-  // Reset state when modal opens/closes
   React.useEffect(() => {
     if (isOpen) {
       setSubmitted(false);
@@ -15,23 +15,17 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, mode, serviceData }) => 
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Simulate API call
     setTimeout(() => {
       setSubmitted(true);
     }, 800);
   };
 
-  // Helper to parse text with newlines, bullets (•), and bolding (**)
   const renderServiceContent = (text: string) => {
-    // Split by newlines to handle paragraphs vs lists
     const lines = text.split('\n').filter(line => line.trim() !== '');
-    
     return (
       <div className="space-y-4 font-lato text-white/70 leading-relaxed font-light">
         {lines.map((line, index) => {
           const trimmedLine = line.trim();
-          
-          // Check for bullet point
           if (trimmedLine.startsWith('•')) {
             const content = trimmedLine.substring(1).trim();
             const boldSplit = content.split('**');
@@ -48,8 +42,6 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, mode, serviceData }) => 
               </div>
             )
           } 
-          
-          // Standard Paragraph
           const boldSplit = trimmedLine.split('**');
           return (
             <p key={index} className="mb-2">
@@ -69,32 +61,120 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, mode, serviceData }) => 
     <AnimatePresence>
       {isOpen && (
         <>
-          {/* Backdrop */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={onClose}
-            className="fixed inset-0 bg-black/90 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+            className="fixed inset-0 bg-black/95 backdrop-blur-md z-50 flex items-center justify-center p-4 md:p-8"
           >
-            {/* Modal Content */}
             <motion.div
-              initial={{ y: 50, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              exit={{ y: 50, opacity: 0 }}
+              initial={{ y: 50, opacity: 0, scale: 0.95 }}
+              animate={{ y: 0, opacity: 1, scale: 1 }}
+              exit={{ y: 50, opacity: 0, scale: 0.95 }}
               onClick={(e) => e.stopPropagation()}
-              className="bg-mauri-black border border-white/10 w-full max-w-lg relative p-8 md:p-12 shadow-2xl max-h-[90vh] overflow-y-auto custom-scrollbar"
+              className="bg-mauri-black border border-white/10 w-full max-w-4xl relative shadow-2xl max-h-[90vh] overflow-y-auto custom-scrollbar flex flex-col"
             >
               <button 
                 onClick={onClose}
-                className="absolute top-4 right-4 text-white/50 hover:text-mauri-red transition-colors"
+                className="absolute top-6 right-6 text-white/50 hover:text-mauri-red transition-colors z-10 p-2 bg-black/20 rounded-full"
               >
                 <X size={24} />
               </button>
 
+              {/* MODE: PROJECT DETAILS (BRANDING STRATEGY) */}
+              {mode === 'project' && projectData && (
+                <div className="p-8 md:p-16">
+                  <header className="mb-12">
+                    <span className="text-mauri-red font-lato text-xs uppercase tracking-[0.3em] font-bold mb-4 block">Case Study</span>
+                    <h3 className="font-bodoni text-4xl md:text-6xl mb-6 text-mauri-white leading-tight">
+                      {projectData.title}
+                    </h3>
+                    <p className="font-lato text-xl text-white/60 font-light leading-relaxed max-w-2xl">
+                      {projectData.details?.intro}
+                    </p>
+                  </header>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
+                    {/* Visual & Symbol */}
+                    <section>
+                      <h4 className="font-bodoni text-2xl mb-6 flex items-center gap-3">
+                        <span className="w-8 h-[1px] bg-mauri-red"></span>
+                        O Símbolo
+                      </h4>
+                      <p className="font-lato text-white/70 leading-relaxed font-light mb-8">
+                        {projectData.details?.symbol}
+                      </p>
+                      <div className="bg-white/5 border border-white/10 p-12 aspect-square flex items-center justify-center group relative overflow-hidden">
+                         <div className="text-center">
+                            <span className="font-bodoni text-8xl text-mauri-white opacity-20 group-hover:opacity-100 transition-opacity duration-700">CW</span>
+                            <p className="mt-4 text-[10px] uppercase tracking-widest text-white/30">Monograma Estratégico</p>
+                         </div>
+                      </div>
+                    </section>
+
+                    {/* Typography & Colors */}
+                    <div className="space-y-16">
+                      <section>
+                        <h4 className="font-bodoni text-2xl mb-6 flex items-center gap-3">
+                          <span className="w-8 h-[1px] bg-mauri-red"></span>
+                          Tipografia
+                        </h4>
+                        <div className="space-y-6">
+                          <div className="p-6 bg-white/[0.03] border border-white/5">
+                            <p className="text-4xl font-bold mb-2">Poppins</p>
+                            <p className="text-xs text-white/40 uppercase tracking-widest">Principal / Contemporânea</p>
+                          </div>
+                          <p className="font-lato text-sm text-white/60 leading-relaxed italic">
+                            {projectData.details?.typography}
+                          </p>
+                        </div>
+                      </section>
+
+                      <section>
+                        <h4 className="font-bodoni text-2xl mb-6 flex items-center gap-3">
+                          <span className="w-8 h-[1px] bg-mauri-red"></span>
+                          Paleta Cromática
+                        </h4>
+                        <div className="space-y-4">
+                          {projectData.details?.colors.map((color, i) => (
+                            <div key={i} className="flex items-start gap-4 group">
+                              <div 
+                                className="w-12 h-12 shrink-0 border border-white/10"
+                                style={{ backgroundColor: color.hex }}
+                              ></div>
+                              <div>
+                                <div className="flex items-center gap-2 mb-1">
+                                  <span className="font-bold text-sm text-white">{color.name}</span>
+                                  <span className="text-[10px] text-white/40 font-mono">{color.hex}</span>
+                                </div>
+                                <p className="text-xs text-white/50 leading-relaxed">
+                                  {color.description}
+                                </p>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      </section>
+                    </div>
+                  </div>
+
+                  <div className="mt-20 pt-10 border-t border-white/10 flex justify-between items-center">
+                    <p className="font-lato text-sm text-white/30 italic">© {new Date().getFullYear()} Grupo Mauri Strategy Design</p>
+                    <button 
+                      onClick={onClose}
+                      className="group flex items-center gap-3 text-xs uppercase tracking-widest text-mauri-red hover:text-white transition-colors"
+                    >
+                      Voltar ao Portfolio
+                      <X size={14} className="group-hover:rotate-90 transition-transform" />
+                    </button>
+                  </div>
+                </div>
+              )}
+
               {/* MODE: SERVICE DETAILS */}
               {mode === 'service' && serviceData && (
-                <div>
+                <div className="p-8 md:p-12">
                    <h3 className="font-bodoni text-2xl md:text-3xl mb-6 text-mauri-white leading-tight">
                     {serviceData.title}
                   </h3>
@@ -113,7 +193,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, mode, serviceData }) => 
 
               {/* MODE: APPLICATION FORM */}
               {mode === 'application' && (
-                <>
+                <div className="p-8 md:p-12">
                   {!submitted ? (
                     <>
                       <h3 className="font-bodoni text-2xl md:text-3xl mb-2 text-mauri-white">
@@ -165,7 +245,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, mode, serviceData }) => 
                       </button>
                     </div>
                   )}
-                </>
+                </div>
               )}
             </motion.div>
           </motion.div>

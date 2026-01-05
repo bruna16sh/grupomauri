@@ -1,3 +1,4 @@
+
 import React from 'react';
 
 export interface SectionProps {
@@ -13,12 +14,33 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
 
 export interface ServiceData {
   title: string;
-  content: string; // Contains the long description with formatting markers
+  content: string;
+}
+
+export interface ProjectColor {
+  name: string;
+  hex: string;
+  description: string;
+}
+
+export interface ProjectData {
+  id: number;
+  title: string;
+  category: string;
+  imageUrl: string;
+  description: string;
+  details?: {
+    intro: string;
+    symbol: string;
+    typography: string;
+    colors: ProjectColor[];
+  };
 }
 
 export interface ModalProps {
   isOpen: boolean;
   onClose: () => void;
-  mode: 'application' | 'service';
+  mode: 'application' | 'service' | 'project';
   serviceData?: ServiceData | null;
+  projectData?: ProjectData | null;
 }

@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import Button from './Button';
@@ -49,6 +50,7 @@ const Navigation: React.FC<NavProps> = ({ onOpenModal }) => {
           <button onClick={() => scrollToSection('problem')} className="font-lato text-sm text-white/70 hover:text-white transition-colors">O Problema</button>
           <button onClick={() => scrollToSection('solution')} className="font-lato text-sm text-white/70 hover:text-white transition-colors">A Solução</button>
           <button onClick={() => scrollToSection('services')} className="font-lato text-sm text-white/70 hover:text-white transition-colors">Serviços</button>
+          <button onClick={() => scrollToSection('projects')} className="font-lato text-sm text-white/70 hover:text-white transition-colors">Projetos</button>
           <Button variant="outline" onClick={onOpenModal} className="!py-3 !px-6 !text-xs">
             Agendar Diagnóstico
           </Button>
@@ -69,6 +71,7 @@ const Navigation: React.FC<NavProps> = ({ onOpenModal }) => {
           <button onClick={() => scrollToSection('problem')} className="text-left font-lato text-white/80">O Problema</button>
           <button onClick={() => scrollToSection('solution')} className="text-left font-lato text-white/80">A Solução</button>
           <button onClick={() => scrollToSection('services')} className="text-left font-lato text-white/80">Serviços</button>
+          <button onClick={() => scrollToSection('projects')} className="text-left font-lato text-white/80">Projetos</button>
           <Button variant="primary" onClick={() => { setMobileMenuOpen(false); onOpenModal(); }} className="w-full">
             Agendar Diagnóstico
           </Button>

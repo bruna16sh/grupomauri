@@ -8,57 +8,45 @@ const Logo: React.FC<LogoProps> = ({ className }) => {
   return (
     <svg 
       xmlns="http://www.w3.org/2000/svg" 
-      viewBox="0 0 220 85" 
+      viewBox="0 0 200 65" 
       className={className}
       aria-label="Grupo Mauri"
     >
       {/* 
-         Nota: As fontes são herdadas do index.html (Bodoni Moda e Lato).
-         O SVG inline permite manipular cores via CSS (fill="currentColor") se necessário, 
-         mas aqui fixamos as cores da marca.
+         Reconstrução Vetorial da Imagem de Referência
+         - Fonte Mauri: Bodoni Moda (Serifa de alto contraste)
+         - Fonte Grupo: Lato (Sans serif geométrica)
+         - Elemento: Triângulo Vermelho (#920027)
       */}
       
-      {/* Triângulo Vermelho - Alinhado à esquerda da base do Mauri */}
-      <path d="M0 60 L7 44 L14 60 Z" fill="#920027" />
+      {/* Triângulo Vermelho - Posicionado como ponto de ênfase na base esquerda */}
+      <path d="M2 58 L8 44 L14 58 Z" fill="#920027" />
 
-      {/* GRUPO - Lato, Pequeno, Espaçamento Largo */}
+      {/* GRUPO - Alinhado opticamente com o início do "M" */}
       <text 
         x="22" 
-        y="30" 
+        y="26" 
         fontFamily="'Lato', sans-serif" 
         fontWeight="300" 
-        fontSize="11" 
-        letterSpacing="0.35em" 
+        fontSize="10" 
+        letterSpacing="0.45em" 
         fill="#ededed"
         opacity="0.9"
       >
         GRUPO
       </text>
 
-      {/* MAURI - Bodoni, Grande */}
+      {/* MAURI - Tipografia Display */}
       <text 
         x="20" 
-        y="60" 
+        y="58" 
         fontFamily="'Bodoni Moda', serif" 
         fontWeight="400" 
-        fontSize="38" 
+        fontSize="42" 
         fill="#ededed"
+        letterSpacing="-0.02em"
       >
         MAURI
-      </text>
-
-      {/* Tagline - Lato, Muito pequena, Espaçamento Largo */}
-      <text 
-        x="22" 
-        y="75" 
-        fontFamily="'Lato', sans-serif" 
-        fontWeight="300" 
-        fontSize="5.5" 
-        letterSpacing="0.3em" 
-        fill="#ededed" 
-        opacity="0.6"
-      >
-        BRANDING & MARKETING & VENDAS
       </text>
     </svg>
   );
