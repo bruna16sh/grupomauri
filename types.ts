@@ -44,3 +44,26 @@ export interface ModalProps {
   serviceData?: ServiceData | null;
   projectData?: ProjectData | null;
 }
+
+export type FrenteId = 'tecnologia-ia' | 'finops-cloud' | 'estrategia-crescimento';
+
+export interface Frente {
+  id: FrenteId;
+  path: string;
+  nome: string;
+  tagline: string;
+  descricao: string;
+  accent: 'red' | 'teal' | 'amber';
+  fontDisplay: 'bodoni' | 'dmsans';
+}
+
+export interface CaseStudy {
+  slug: string;
+  frenteId: FrenteId;
+  titulo: string;
+  segmento: string;
+  problema: string;
+  solucao: string;
+  resultado: string;
+  stack?: string;
+}
