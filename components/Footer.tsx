@@ -1,7 +1,7 @@
 import React from 'react';
-import { Linkedin } from 'lucide-react';
+import { Instagram } from 'lucide-react';
 import Logo from './Logo';
-import { frentes, WHATSAPP_URL } from '../data/frentes';
+import { frentes, WHATSAPP_URL, INSTAGRAM_URL } from '../data/frentes';
 
 const Footer: React.FC = () => {
   const scrollToSolucoes = () => {
@@ -41,11 +41,13 @@ const Footer: React.FC = () => {
             </a>
           </nav>
           <a
-            href="#"
-            aria-label="LinkedIn"
+            href={INSTAGRAM_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Instagram do Grupo Mauri"
             className="w-10 h-10 shrink-0 border border-white/20 rounded-full flex items-center justify-center hover:bg-mauri-red hover:border-mauri-red transition-all duration-300 text-white/60 hover:text-white"
           >
-            <Linkedin size={18} />
+            <Instagram size={18} />
           </a>
         </div>
       </div>
