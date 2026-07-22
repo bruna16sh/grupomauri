@@ -33,7 +33,7 @@ const Navigation: React.FC = () => {
           className="cursor-pointer flex items-center hover:opacity-90 transition-opacity"
           aria-label="Ir para o topo"
         >
-          <Logo className="h-9 w-auto" />
+          <Logo className="h-7 sm:h-8 w-auto" />
         </button>
 
         {/* Desktop Menu */}

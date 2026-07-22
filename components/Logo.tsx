@@ -2,33 +2,14 @@ import React from 'react';
 
 interface LogoProps {
   className?: string;
-  /** cor do wordmark/símbolo. Padrão cream (para fundo escuro). */
-  markColor?: string;
 }
 
 /**
- * Símbolo oficial do Grupo Mauri: monograma "M" + triângulo de acento maroon.
- * viewBox recortado justo ao bounding box real do vetor (medido via getBBox).
+ * Wordmark oficial do Grupo Mauri (cream sobre transparente).
+ * Arquivo em public/logo.png (2063x575). Dimensionar por altura (h-*) + w-auto.
  */
-const Logo: React.FC<LogoProps> = ({ className, markColor = '#f8f6f2' }) => {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="324 49 650 689"
-      className={className}
-      role="img"
-      aria-label="Grupo Mauri"
-    >
-      <path
-        fill={markColor}
-        d="m387.67,559.31c.08-148.32.16-296.64.27-444.96.01-15.62.24-31.25-12.19-45.39,6.72-.54,11.61-1.22,16.49-1.26,22.31-.19,44.63-.09,66.94-.33,7.17-.08,11.6,3.09,14.42,9.5,24.77,56.34,49.7,112.6,74.4,168.97,10.12,23.09,14.57,26.29,36.67,13.72,20.91-11.89,39.56-27.77,59.15-41.98,20.54-14.89,40.58-30.53,61.74-44.47,8.19-5.39,18.63-8.25,28.46-10.06,18.98-3.48,33.07,6.33,38.05,25.1,6.8,25.67,2.61,51.03-2.66,76.31-14.03,67.28-40.04,130.48-66.06,193.66-8.38,20.36-17.66,40.34-25.96,60.74-2.01,4.94-1.73,10.8-2.5,16.24,1.08.21,2.17.43,3.25.64,7.25-17.35,14.54-34.68,21.75-52.04,40.37-97.24,80.74-194.48,121.08-291.74,15.36-37.02,30.67-74.07,45.96-111.12,4.88-11.84,7.43-13.39,20.39-13.28,20.33.17,40.67.29,61-.06,6.33-.11,8.15,1.83,8.14,8.17-.15,212.74-.13,425.47-.14,638.21,0,1.68-.24,3.35-.42,5.75h-82.99V102.57c-.8-.05-1.61-.09-2.41-.14-77.03,184.93-154.06,369.87-231.72,556.3-79.42-179.62-158.28-357.97-237.13-536.32-.55.14-1.09.29-1.64.43-.79,151.59-1.59,303.18-2.38,454.77"
-      />
-      <path
-        fill="#920027"
-        d="m342.32,719c14.51-25.28,28.54-49.75,43.28-75.43,14.93,25.73,29.02,50.03,43.76,75.43h-87.04Z"
-      />
-    </svg>
-  );
+const Logo: React.FC<LogoProps> = ({ className }) => {
+  return <img src="/logo.png" alt="Grupo Mauri" className={className} />;
 };
 
 export default Logo;

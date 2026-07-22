@@ -13,7 +13,7 @@ const Footer: React.FC = () => {
       <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12">
         <div className="max-w-sm">
           <div className="mb-6 opacity-90">
-            <Logo className="h-14 w-auto" />
+            <Logo className="h-10 w-auto" />
           </div>
           <p className="font-lato text-sm text-white/50 leading-relaxed">
             Ecossistema de tecnologia, cloud e marca para empresas que precisam crescer com mais estrutura.
