@@ -28,6 +28,6 @@ export const frentes: Frente[] = [
     nome: 'Branding & Marketing',
     destaque: 'Construímos marcas com posicionamento, presença e direção estratégica.',
     descricao: 'Branding estratégico, identidade, comunicação, conteúdo, presença digital, SEO/GAI e campanhas conectadas à arquitetura do negócio.',
-    href: 'https://www.grupomauri.com.br/',
+    href: 'https://estrategia.grupomauri.com.br/',
   },
 ];
