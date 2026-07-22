@@ -1,65 +1,68 @@
-
 import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import Button from './Button';
 import Logo from './Logo';
+import { frentes, WHATSAPP_URL } from '../data/frentes';
 
-interface NavProps {
-  onOpenModal: () => void;
-}
-
-const Navigation: React.FC<NavProps> = ({ onOpenModal }) => {
+const Navigation: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
+    const handleScroll = () => setIsScrolled(window.scrollY > 50);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   const scrollToSection = (id: string) => {
     setMobileMenuOpen(false);
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
   };
 
   return (
-    <nav 
+    <nav
       className={`fixed top-0 w-full z-40 transition-all duration-500 border-b ${
-        isScrolled 
-          ? 'bg-mauri-black/90 backdrop-blur-md border-white/10 py-4' 
-          : 'bg-transparent border-transparent py-8'
+        isScrolled
+          ? 'bg-mauri-black/90 backdrop-blur-md border-white/10 py-4'
+          : 'bg-transparent border-transparent py-6'
       }`}
     >
       <div className="max-w-6xl mx-auto px-6 flex justify-between items-center">
-        {/* Logo */}
-        <div 
-          onClick={() => scrollToSection('hero')} 
-          className="cursor-pointer w-40 sm:w-48 hover:opacity-90 transition-opacity"
+        <button
+          onClick={() => scrollToSection('hero')}
+          className="cursor-pointer w-32 sm:w-40 hover:opacity-90 transition-opacity"
+          aria-label="Ir para o topo"
         >
           <Logo className="w-full h-auto" />
-        </div>
+        </button>
 
         {/* Desktop Menu */}
         <div className="hidden md:flex items-center space-x-8">
-          <button onClick={() => scrollToSection('problem')} className="font-lato text-sm text-white/70 hover:text-white transition-colors">O Problema</button>
-          <button onClick={() => scrollToSection('solution')} className="font-lato text-sm text-white/70 hover:text-white transition-colors">A Solução</button>
-          <button onClick={() => scrollToSection('services')} className="font-lato text-sm text-white/70 hover:text-white transition-colors">Serviços</button>
-          <button onClick={() => scrollToSection('projects')} className="font-lato text-sm text-white/70 hover:text-white transition-colors">Projetos</button>
-          <Button variant="outline" onClick={onOpenModal} className="!py-3 !px-6 !text-xs">
-            Agendar Diagnóstico
+          {frentes.map((f) => (
+            <button
+              key={f.nome}
+              onClick={() => scrollToSection('solucoes')}
+              className="font-lato text-sm text-white/70 hover:text-white transition-colors"
+            >
+              {f.nome}
+            </button>
+          ))}
+          <Button
+            href={WHATSAPP_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            variant="outline"
+            className="!py-3 !px-6 !text-xs"
+          >
+            Solicitar diagnóstico
           </Button>
         </div>
 
         {/* Mobile Toggle */}
-        <button 
-          className="md:hidden text-white"
+        <button
+          className="md:hidden text-white p-2 -mr-2"
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          aria-label={mobileMenuOpen ? 'Fechar menu' : 'Abrir menu'}
         >
           {mobileMenuOpen ? <X /> : <Menu />}
         </button>
@@ -67,13 +70,24 @@ const Navigation: React.FC<NavProps> = ({ onOpenModal }) => {
 
       {/* Mobile Menu */}
       {mobileMenuOpen && (
-        <div className="absolute top-full left-0 w-full bg-mauri-black border-b border-white/10 p-6 md:hidden flex flex-col space-y-6 animate-fade-in shadow-2xl">
-          <button onClick={() => scrollToSection('problem')} className="text-left font-lato text-white/80">O Problema</button>
-          <button onClick={() => scrollToSection('solution')} className="text-left font-lato text-white/80">A Solução</button>
-          <button onClick={() => scrollToSection('services')} className="text-left font-lato text-white/80">Serviços</button>
-          <button onClick={() => scrollToSection('projects')} className="text-left font-lato text-white/80">Projetos</button>
-          <Button variant="primary" onClick={() => { setMobileMenuOpen(false); onOpenModal(); }} className="w-full">
-            Agendar Diagnóstico
+        <div className="absolute top-full left-0 w-full bg-mauri-black border-b border-white/10 p-6 md:hidden flex flex-col space-y-6 shadow-2xl">
+          {frentes.map((f) => (
+            <button
+              key={f.nome}
+              onClick={() => scrollToSection('solucoes')}
+              className="text-left font-lato text-white/80"
+            >
+              {f.nome}
+            </button>
+          ))}
+          <Button
+            href={WHATSAPP_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            variant="primary"
+            className="w-full"
+          >
+            Solicitar diagnóstico
           </Button>
         </div>
       )}
