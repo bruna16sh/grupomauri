@@ -30,10 +30,10 @@ const Navigation: React.FC = () => {
       <div className="max-w-6xl mx-auto px-6 flex justify-between items-center">
         <button
           onClick={() => scrollToSection('hero')}
-          className="cursor-pointer w-32 sm:w-40 hover:opacity-90 transition-opacity"
+          className="cursor-pointer flex items-center hover:opacity-90 transition-opacity"
           aria-label="Ir para o topo"
         >
-          <Logo className="w-full h-auto" />
+          <Logo className="h-9 w-auto" />
         </button>
 
         {/* Desktop Menu */}

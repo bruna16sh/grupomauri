@@ -26,8 +26,18 @@ const Home: React.FC = () => {
   return (
     <>
       {/* HERO */}
-      <section id="hero" className="relative min-h-[88vh] flex items-center px-6 pt-28 pb-16">
-        <div className="max-w-5xl mx-auto w-full">
+      <section id="hero" className="relative min-h-[88vh] flex items-center px-6 pt-28 pb-16 overflow-hidden">
+        {/* Imagem de fundo do hero (aparece quando public/hero-bg.png existir; some sem quebrar se ausente) */}
+        <div className="pointer-events-none absolute inset-0 z-0" aria-hidden="true">
+          <div
+            className="absolute right-0 top-0 h-full w-full md:w-3/4 bg-no-repeat bg-right bg-cover opacity-80"
+            style={{ backgroundImage: "url('/hero-bg.png')" }}
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-mauri-black via-mauri-black/70 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-mauri-black via-transparent to-transparent" />
+        </div>
+
+        <div className="relative z-10 max-w-5xl mx-auto w-full">
           <motion.div initial="hidden" animate="visible" variants={stagger}>
             <motion.div variants={fadeInUp}>
               <Eyebrow>Grupo Mauri · Ecossistema de Soluções</Eyebrow>

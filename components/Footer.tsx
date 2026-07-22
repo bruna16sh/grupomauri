@@ -12,8 +12,8 @@ const Footer: React.FC = () => {
     <footer className="py-16 px-6 border-t border-white/10 bg-black/40">
       <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12">
         <div className="max-w-sm">
-          <div className="w-36 mb-6 opacity-90">
-            <Logo className="w-full h-auto" />
+          <div className="mb-6 opacity-90">
+            <Logo className="h-14 w-auto" />
           </div>
           <p className="font-lato text-sm text-white/50 leading-relaxed">
             Ecossistema de tecnologia, cloud e marca para empresas que precisam crescer com mais estrutura.
