@@ -16,35 +16,62 @@ const stagger = {
 
 const scrollTo = (id: string) => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
 
+// Pill badge (rótulo de seção) — estilo mais profissional, inspirado na referência
 const Eyebrow: React.FC<{ children: React.ReactNode }> = ({ children }) => (
-  <span className="font-lato text-xs uppercase tracking-[0.3em] text-mauri-silver font-bold mb-5 block">
+  <span className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.04] px-4 py-1.5 mb-6 font-lato text-[11px] uppercase tracking-[0.22em] text-mauri-silver font-semibold backdrop-blur-sm">
+    <span className="w-1.5 h-1.5 rounded-full bg-mauri-silver/80" />
     {children}
   </span>
+);
+
+// Estrela de 4 pontas (sparkle) decorativa, prata
+const Sparkle: React.FC<{ className?: string }> = ({ className }) => (
+  <svg viewBox="0 0 100 100" className={className} aria-hidden="true">
+    <path
+      d="M50 0 C50 27 73 50 100 50 C73 50 50 73 50 100 C50 73 27 50 0 50 C27 50 50 27 50 0 Z"
+      fill="url(#sparkleGrad)"
+    />
+    <defs>
+      <radialGradient id="sparkleGrad" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stopColor="#ffffff" />
+        <stop offset="100%" stopColor="#9aa0a8" />
+      </radialGradient>
+    </defs>
+  </svg>
 );
 
 const Home: React.FC = () => {
   return (
     <>
       {/* HERO */}
-      <section id="hero" className="relative min-h-[88vh] flex items-center px-6 pt-28 pb-16 overflow-hidden">
-        {/* Imagem de fundo do hero (aparece quando public/hero-bg.png existir; some sem quebrar se ausente) */}
+      <section id="hero" className="relative min-h-[92vh] flex items-center justify-center px-6 pt-28 pb-16 overflow-hidden text-center">
+        {/* Fundo do hero: triângulo de vidro centralizado como backdrop luminoso + profundidade */}
         <div className="pointer-events-none absolute inset-0 z-0" aria-hidden="true">
           <div
-            className="absolute right-0 top-0 h-full w-full md:w-3/4 bg-no-repeat bg-right bg-cover opacity-80 grayscale"
+            className="absolute inset-0 bg-no-repeat bg-center bg-cover opacity-40 grayscale"
             style={{ backgroundImage: "url('/hero-bg.png')" }}
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-mauri-black via-mauri-black/70 to-transparent" />
-          <div className="absolute inset-0 bg-gradient-to-t from-mauri-black via-transparent to-transparent" />
+          {/* Scrim uniforme para contraste do texto centralizado */}
+          <div className="absolute inset-0 bg-mauri-black/55" />
+          {/* Vinheta radial: escurece as bordas, mantém um brilho central sutil */}
+          <div className="absolute inset-0 bg-gradient-radial from-transparent via-mauri-black/30 to-mauri-black" />
+          {/* Fade de topo e base pra fundir na navegação e na próxima seção */}
+          <div className="absolute inset-0 bg-gradient-to-b from-mauri-black via-transparent to-mauri-black" />
         </div>
 
-        <div className="relative z-10 max-w-5xl mx-auto w-full">
-          <motion.div initial="hidden" animate="visible" variants={stagger}>
+        {/* Sparkles decorativos */}
+        <Sparkle className="twinkle pointer-events-none absolute top-[22%] right-[14%] w-8 h-8 md:w-10 md:h-10 opacity-60" />
+        <Sparkle className="twinkle-2 pointer-events-none absolute bottom-[26%] left-[16%] w-5 h-5 md:w-6 md:h-6 opacity-40" />
+        <Sparkle className="twinkle pointer-events-none absolute top-[34%] left-[26%] w-3 h-3 opacity-30 hidden md:block" />
+
+        <div className="relative z-10 max-w-3xl mx-auto w-full flex flex-col items-center">
+          <motion.div initial="hidden" animate="visible" variants={stagger} className="flex flex-col items-center">
             <motion.div variants={fadeInUp}>
               <Eyebrow>Grupo Mauri · Ecossistema de Soluções</Eyebrow>
             </motion.div>
             <motion.h1
               variants={fadeInUp}
-              className="font-fraunces font-semibold text-4xl md:text-5xl lg:text-6xl leading-[1.08] mb-8 max-w-4xl"
+              className="title-silver font-fraunces font-semibold text-4xl md:text-5xl lg:text-6xl leading-[1.08] mb-8"
             >
               Tecnologia, cloud e marca para empresas que precisam crescer com mais{' '}
               <span className="italic">estrutura</span>.
@@ -76,7 +103,7 @@ const Home: React.FC = () => {
         <div className="max-w-3xl mx-auto">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-80px' }} variants={fadeInUp}>
             <Eyebrow>Como atuamos</Eyebrow>
-            <h2 className="font-fraunces font-semibold text-3xl md:text-4xl lg:text-5xl leading-tight mb-8">
+            <h2 className="title-silver font-fraunces font-semibold text-3xl md:text-4xl lg:text-5xl leading-tight mb-8">
               Frentes especializadas. Uma visão integrada de <span className="italic">negócio</span>.
             </h2>
             <p className="font-lato text-white/70 text-lg leading-relaxed font-light">
@@ -108,7 +135,7 @@ const Home: React.FC = () => {
                   <span className="font-fraunces text-6xl md:text-7xl text-white/15 leading-none">{f.numero}</span>
                 </div>
                 <div className="md:col-span-7">
-                  <h3 className="font-fraunces font-semibold text-2xl md:text-3xl mb-3">{f.nome}</h3>
+                  <h3 className="title-silver font-fraunces font-semibold text-2xl md:text-3xl mb-3 inline-block">{f.nome}</h3>
                   <p className="font-lato text-mauri-silver text-base md:text-lg font-medium mb-4">{f.destaque}</p>
                   <p className="font-lato text-white/60 font-light leading-relaxed max-w-xl">{f.descricao}</p>
                 </div>
@@ -134,8 +161,7 @@ const Home: React.FC = () => {
       <section id="autoridade" className="py-24 px-6">
         <div className="max-w-3xl mx-auto">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-80px' }} variants={fadeInUp}>
-            <Eyebrow>Autoridade</Eyebrow>
-            <h2 className="font-fraunces font-semibold text-3xl md:text-4xl leading-tight mb-6">
+            <h2 className="title-silver font-fraunces font-semibold text-3xl md:text-4xl leading-tight mb-6">
               Mais de 5 anos atuando com tecnologia, cloud e estratégia de marca.
             </h2>
             <p className="font-lato text-white/70 text-lg leading-relaxed font-light">
@@ -151,7 +177,7 @@ const Home: React.FC = () => {
         <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-white/[0.04] rounded-full blur-[120px] pointer-events-none" />
         <div className="max-w-4xl mx-auto relative z-10">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp}>
-            <h2 className="font-fraunces font-semibold text-3xl md:text-4xl lg:text-5xl leading-tight mb-6">
+            <h2 className="title-silver font-fraunces font-semibold text-3xl md:text-4xl lg:text-5xl leading-tight mb-6">
               Qual solução faz mais sentido para o <span className="italic">momento</span> da sua empresa?
             </h2>
             <p className="font-lato text-white/70 text-lg font-light mb-10 max-w-2xl leading-relaxed">
