@@ -16,10 +16,9 @@ const stagger = {
 
 const scrollTo = (id: string) => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
 
-// Pill badge (rótulo de seção)
+// Rótulo de seção (eyebrow editorial, sem pill/botão)
 const Eyebrow: React.FC<{ children: React.ReactNode }> = ({ children }) => (
-  <span className="inline-flex items-center gap-2 rounded-full border border-white/12 bg-white/[0.03] px-4 py-1.5 mb-6 font-lato text-[11px] uppercase tracking-[0.22em] text-mauri-silver font-semibold backdrop-blur-sm">
-    <span className="w-1.5 h-1.5 rounded-full bg-mauri-silver/80" />
+  <span className="block mb-5 font-lato text-[11px] uppercase tracking-[0.3em] text-mauri-silver font-semibold">
     {children}
   </span>
 );
@@ -80,26 +79,20 @@ const Home: React.FC = () => {
 
       {/* ============ COMO ATUAMOS ============ */}
       <section id="como-atuamos" className="relative section-y px-6 overflow-hidden">
-        {/* Iluminação ambiente lateral, contida na própria seção */}
-        <div className="pointer-events-none absolute inset-0" aria-hidden="true">
+        {/* Iluminação ambiente central, contida na própria seção */}
+        <div className="pointer-events-none absolute inset-0 flex items-center justify-center" aria-hidden="true">
           <div
-            className="absolute top-1/2 right-[6%] -translate-y-1/2 w-72 h-72 rounded-full blur-[120px] opacity-70"
-            style={{ background: 'radial-gradient(circle, rgba(255,255,255,0.03), transparent 70%)' }}
+            className="w-[560px] max-w-[110%] h-72 rounded-full blur-[130px] opacity-70"
+            style={{ background: 'radial-gradient(circle, rgba(255,255,255,0.028), transparent 70%)' }}
           />
         </div>
-        <div className="relative max-w-[1120px] mx-auto">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: '-80px' }}
-            variants={fadeInUp}
-            className="max-w-[680px]"
-          >
+        <div className="relative max-w-3xl mx-auto text-center">
+          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-80px' }} variants={fadeInUp}>
             <Eyebrow>Como atuamos</Eyebrow>
             <h2 className="title-silver balance font-fraunces font-semibold h-section mb-7">
               Frentes especializadas. Uma visão integrada de <span className="italic">negócio</span>.
             </h2>
-            <p className="font-lato text-white/78 text-lg leading-[1.65] font-light measure">
+            <p className="font-lato text-white/78 text-lg leading-[1.65] font-light measure mx-auto">
               Cada frente do Grupo Mauri tem foco, linguagem e metodologia próprios. Isso permite atuar com profundidade
               em tecnologia, cloud e marca, sem perder a visão estratégica do todo. Quando o projeto exige integração,
               conectamos as frentes. Quando exige especialização, cada uma atua com autonomia e precisão.
@@ -111,7 +104,7 @@ const Home: React.FC = () => {
       {/* ============ SOLUÇÕES ============ */}
       <section id="solucoes" className="relative section-y px-6">
         <div className="relative max-w-[1120px] mx-auto">
-          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp} className="mb-12 md:mb-14">
+          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp} className="mb-8 md:mb-10">
             <Eyebrow>Soluções</Eyebrow>
           </motion.div>
 
