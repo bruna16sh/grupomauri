@@ -24,22 +24,6 @@ const Eyebrow: React.FC<{ children: React.ReactNode }> = ({ children }) => (
   </span>
 );
 
-// Estrela de 4 pontas (sparkle) decorativa, prata
-const Sparkle: React.FC<{ className?: string }> = ({ className }) => (
-  <svg viewBox="0 0 100 100" className={className} aria-hidden="true">
-    <path
-      d="M50 0 C50 27 73 50 100 50 C73 50 50 73 50 100 C50 73 27 50 0 50 C27 50 50 27 50 0 Z"
-      fill="url(#sparkleGrad)"
-    />
-    <defs>
-      <radialGradient id="sparkleGrad" cx="50%" cy="50%" r="50%">
-        <stop offset="0%" stopColor="#ffffff" />
-        <stop offset="100%" stopColor="#9aa0a8" />
-      </radialGradient>
-    </defs>
-  </svg>
-);
-
 const Home: React.FC = () => {
   return (
     <>
@@ -58,11 +42,6 @@ const Home: React.FC = () => {
           {/* Fade de topo e base pra fundir na navegação e na próxima seção */}
           <div className="absolute inset-0 bg-gradient-to-b from-mauri-black via-transparent to-mauri-black" />
         </div>
-
-        {/* Sparkles decorativos */}
-        <Sparkle className="twinkle pointer-events-none absolute top-[22%] right-[14%] w-8 h-8 md:w-10 md:h-10 opacity-60" />
-        <Sparkle className="twinkle-2 pointer-events-none absolute bottom-[26%] left-[16%] w-5 h-5 md:w-6 md:h-6 opacity-40" />
-        <Sparkle className="twinkle pointer-events-none absolute top-[34%] left-[26%] w-3 h-3 opacity-30 hidden md:block" />
 
         <div className="relative z-10 max-w-3xl mx-auto w-full flex flex-col items-center">
           <motion.div initial="hidden" animate="visible" variants={stagger} className="flex flex-col items-center">
@@ -173,18 +152,18 @@ const Home: React.FC = () => {
       </section>
 
       {/* CTA FINAL */}
-      <section className="py-28 px-6 relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-white/[0.04] rounded-full blur-[120px] pointer-events-none" />
-        <div className="max-w-4xl mx-auto relative z-10">
-          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp}>
+      <section className="py-28 px-6 relative overflow-hidden text-center">
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[500px] bg-white/[0.04] rounded-full blur-[120px] pointer-events-none" />
+        <div className="max-w-3xl mx-auto relative z-10">
+          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp} className="flex flex-col items-center">
             <h2 className="title-silver font-fraunces font-semibold text-3xl md:text-4xl lg:text-5xl leading-tight mb-6">
               Qual solução faz mais sentido para o <span className="italic">momento</span> da sua empresa?
             </h2>
-            <p className="font-lato text-white/70 text-lg font-light mb-10 max-w-2xl leading-relaxed">
+            <p className="font-lato text-white/70 text-lg font-light mb-10 max-w-2xl mx-auto leading-relaxed">
               Tecnologia, cloud ou marca: cada área tem uma abordagem própria, mas todas partem da mesma lógica,
               entender o negócio antes de propor a solução.
             </p>
-            <div className="flex flex-col sm:flex-row flex-wrap gap-4 mb-8">
+            <div className="flex flex-col sm:flex-row flex-wrap justify-center gap-4 mb-8">
               {frentes.map((f) => (
                 <Button
                   key={f.nome}
