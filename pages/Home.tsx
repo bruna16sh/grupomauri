@@ -27,10 +27,10 @@ const Eyebrow: React.FC<{ children: React.ReactNode }> = ({ children }) => (
 const Home: React.FC = () => {
   return (
     <>
-      {/* HERO */}
+      {/* ============ HERO ============ */}
       <section
         id="hero"
-        className="relative min-h-[92vh] flex items-center justify-center px-6 pt-32 pb-24 overflow-hidden text-center"
+        className="relative min-h-[92vh] flex items-center justify-center px-6 pt-32 pb-[clamp(7rem,10vw,10rem)] overflow-hidden text-center"
       >
         {/* Fundo do hero: monograma de vidro como backdrop luminoso + profundidade tonal */}
         <div className="pointer-events-none absolute inset-0 z-0" aria-hidden="true">
@@ -38,16 +38,12 @@ const Home: React.FC = () => {
             className="absolute inset-0 bg-no-repeat bg-center bg-cover opacity-[0.42] grayscale"
             style={{ backgroundImage: "url('/hero-bg.png')" }}
           />
-          {/* Iluminação ambiente muito suave atrás do monograma */}
           <div
             className="absolute inset-0"
             style={{ background: 'radial-gradient(circle at 50% 44%, rgba(255,255,255,0.05), transparent 42%)' }}
           />
-          {/* Scrim para contraste do texto */}
           <div className="absolute inset-0 bg-[#0a0908]/58" />
-          {/* Vinheta radial */}
           <div className="absolute inset-0 bg-gradient-radial from-transparent via-[#0a0908]/25 to-[#0a0908]" />
-          {/* Fade de topo/base para fundir com nav e próxima seção (continuidade) */}
           <div className="absolute inset-0 bg-gradient-to-b from-[#0a0908] via-transparent to-[#0a0908]" />
         </div>
 
@@ -73,33 +69,34 @@ const Home: React.FC = () => {
           </motion.div>
         </div>
 
-        {/* Conector vertical + chevron: leva o olhar à próxima seção (continuidade) */}
-        <div
-          className="hidden md:block absolute bottom-[4.5rem] left-1/2 -translate-x-1/2 w-px h-12 bg-gradient-to-b from-transparent to-white/25"
-          aria-hidden="true"
-        />
         <button
           onClick={() => scrollTo('como-atuamos')}
-          className="hidden md:block absolute bottom-7 left-1/2 -translate-x-1/2 text-white/35 hover:text-white/70 animate-bounce transition-colors"
+          className="hidden md:block absolute bottom-8 left-1/2 -translate-x-1/2 text-white/35 hover:text-white/70 animate-bounce transition-colors"
           aria-label="Rolar para baixo"
         >
           <ChevronDown size={26} />
         </button>
       </section>
 
-      {/* COMO ATUAMOS */}
-      <section id="como-atuamos" className="relative section-y-tight px-6 overflow-hidden">
-        {/* Elemento decorativo abstrato (iluminação ambiente lateral, sem conteúdo) */}
+      {/* ============ COMO ATUAMOS ============ */}
+      <section id="como-atuamos" className="relative section-y px-6 overflow-hidden">
+        {/* Iluminação ambiente lateral, contida na própria seção */}
         <div className="pointer-events-none absolute inset-0" aria-hidden="true">
           <div
-            className="absolute top-1/2 right-[4%] -translate-y-1/2 w-72 h-72 rounded-full blur-[110px] opacity-70"
-            style={{ background: 'radial-gradient(circle, rgba(255,255,255,0.032), transparent 70%)' }}
+            className="absolute top-1/2 right-[6%] -translate-y-1/2 w-72 h-72 rounded-full blur-[120px] opacity-70"
+            style={{ background: 'radial-gradient(circle, rgba(255,255,255,0.03), transparent 70%)' }}
           />
         </div>
-        <div className="relative max-w-[720px] mx-auto">
-          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-80px' }} variants={fadeInUp}>
+        <div className="relative max-w-[1120px] mx-auto">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: '-80px' }}
+            variants={fadeInUp}
+            className="max-w-[680px]"
+          >
             <Eyebrow>Como atuamos</Eyebrow>
-            <h2 className="title-silver balance font-fraunces font-semibold h-section mb-8">
+            <h2 className="title-silver balance font-fraunces font-semibold h-section mb-7">
               Frentes especializadas. Uma visão integrada de <span className="italic">negócio</span>.
             </h2>
             <p className="font-lato text-white/78 text-lg leading-[1.65] font-light measure">
@@ -111,19 +108,12 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      {/* SOLUÇÕES */}
-      <section id="solucoes" className="relative section-y px-6 overflow-hidden">
-        {/* Transição por banda tonal suave (sem cortes rígidos) */}
-        <div
-          className="pointer-events-none absolute inset-0 bg-gradient-to-b from-transparent via-white/[0.018] to-transparent"
-          aria-hidden="true"
-        />
+      {/* ============ SOLUÇÕES ============ */}
+      <section id="solucoes" className="relative section-y px-6">
         <div className="relative max-w-[1120px] mx-auto">
-          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp} className="mb-10">
+          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp} className="mb-12 md:mb-14">
             <Eyebrow>Soluções</Eyebrow>
           </motion.div>
-          {/* Linha estrutural que abre a seção */}
-          <div className="hairline mb-2" aria-hidden="true" />
 
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-60px' }} variants={stagger}>
             {frentes.map((f, i) => (
@@ -140,7 +130,7 @@ const Home: React.FC = () => {
                     aria-hidden="true"
                   />
                 )}
-                <div className="relative grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-10 items-center py-10 md:py-12">
+                <div className="relative grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-10 items-center py-11 md:py-14">
                   <div className="md:col-span-2">
                     <span className="font-fraunces text-5xl md:text-7xl text-white/15 group-hover:text-white/35 leading-none transition-colors duration-200 tabular-nums">
                       {f.numero}
@@ -175,71 +165,47 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      {/* AUTORIDADE */}
-      <section id="autoridade" className="relative section-y-tight px-6 overflow-hidden">
-        {/* Iluminação ambiente inferior (autoridade sem adicionar conteúdo) */}
-        <div className="pointer-events-none absolute inset-0" aria-hidden="true">
+      {/* ============ CTA FINAL ============ */}
+      <section className="relative section-y px-6 overflow-hidden text-center">
+        {/* Iluminação ambiente central (presença visual sem virar card) */}
+        <div className="pointer-events-none absolute inset-0 flex items-start justify-center" aria-hidden="true">
           <div
-            className="absolute inset-x-0 bottom-0 h-2/3"
-            style={{ background: 'radial-gradient(ellipse at 50% 100%, rgba(255,255,255,0.025), transparent 62%)' }}
+            className="w-[680px] max-w-[120%] h-[460px] rounded-full blur-[140px]"
+            style={{ background: 'radial-gradient(circle, rgba(255,255,255,0.045), transparent 66%)' }}
           />
         </div>
-        <div className="relative max-w-[720px] mx-auto">
-          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-80px' }} variants={fadeInUp}>
+        <div className="relative z-10 max-w-[720px] mx-auto flex flex-col items-center">
+          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp} className="flex flex-col items-center">
             <h2 className="title-silver balance font-fraunces font-semibold h-section mb-6">
-              Mais de 5 anos atuando com tecnologia, cloud e estratégia de marca.
+              Qual solução faz mais sentido para o <span className="italic">momento</span> da sua empresa?
             </h2>
-            <p className="font-lato text-white/78 text-lg leading-[1.65] font-light measure">
-              Atuação em tecnologia, cloud e estratégia de marca por mais de 5 anos, com certificações profissionais em
-              provedores como AWS, Google Cloud, Azure e Oracle Cloud.
+            <p className="font-lato text-white/78 text-lg font-light mb-10 max-w-2xl mx-auto leading-[1.65]">
+              Há mais de 5 anos, atuamos com tecnologia, cloud e estratégia de marca com uma mesma lógica: entender o
+              negócio antes de propor a solução, com experiência certificada em AWS, Google Cloud, Azure e Oracle Cloud.
             </p>
+            <div className="flex flex-col sm:flex-row flex-wrap justify-center gap-3 sm:gap-4 mb-8 w-full sm:w-auto">
+              {frentes.map((f) => (
+                <Button
+                  key={f.nome}
+                  href={f.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  variant="outline"
+                  className="!py-3 !px-6 !text-xs w-full sm:w-auto"
+                >
+                  {f.nome}
+                </Button>
+              ))}
+            </div>
+            <a
+              href={WHATSAPP_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-lato text-sm text-white/65 hover:text-white transition-colors border-b border-white/30 hover:border-white pb-1"
+            >
+              Não sei, quero um diagnóstico
+            </a>
           </motion.div>
-        </div>
-      </section>
-
-      {/* CTA FINAL */}
-      <section className="relative section-y px-6 overflow-hidden">
-        <div className="surface-elevated relative max-w-[1120px] mx-auto rounded-t-[1.75rem] px-6 sm:px-10 py-16 md:py-24 text-center overflow-hidden">
-          {/* Glow central suave */}
-          <div className="pointer-events-none absolute inset-0" aria-hidden="true">
-            <div
-              className="absolute top-0 left-1/2 -translate-x-1/2 w-[620px] max-w-[120%] h-[440px] rounded-full blur-[130px]"
-              style={{ background: 'radial-gradient(circle, rgba(255,255,255,0.05), transparent 65%)' }}
-            />
-          </div>
-          <div className="relative z-10 max-w-3xl mx-auto flex flex-col items-center">
-            <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp} className="flex flex-col items-center">
-              <h2 className="title-silver balance font-fraunces font-semibold h-section mb-6">
-                Qual solução faz mais sentido para o <span className="italic">momento</span> da sua empresa?
-              </h2>
-              <p className="font-lato text-white/78 text-lg font-light mb-10 max-w-2xl mx-auto leading-[1.65]">
-                Tecnologia, cloud ou marca: cada área tem uma abordagem própria, mas todas partem da mesma lógica,
-                entender o negócio antes de propor a solução.
-              </p>
-              <div className="flex flex-col sm:flex-row flex-wrap justify-center gap-3 sm:gap-4 mb-8 w-full sm:w-auto">
-                {frentes.map((f) => (
-                  <Button
-                    key={f.nome}
-                    href={f.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    variant="outline"
-                    className="!py-3 !px-6 !text-xs w-full sm:w-auto"
-                  >
-                    {f.nome}
-                  </Button>
-                ))}
-              </div>
-              <a
-                href={WHATSAPP_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="font-lato text-sm text-white/65 hover:text-white transition-colors border-b border-white/30 hover:border-white pb-1"
-              >
-                Não sei, quero um diagnóstico
-              </a>
-            </motion.div>
-          </div>
         </div>
       </section>
     </>

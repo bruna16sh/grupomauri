@@ -10,10 +10,7 @@ const Background: React.FC = () => {
     <div
       className="fixed inset-0 z-[-1] pointer-events-none"
       aria-hidden="true"
-      style={{
-        background:
-          'linear-gradient(180deg, var(--bg-deep) 0%, var(--bg-primary) 20%, var(--bg-secondary) 48%, var(--bg-primary) 76%, var(--bg-deep) 100%)',
-      }}
+      style={{ backgroundColor: 'var(--bg-primary)' }}
     >
       {/* Textura procedural de grão (papel/relevo), bem discreta */}
       <svg className="absolute inset-0 w-full h-full opacity-[0.06] mix-blend-soft-light">
