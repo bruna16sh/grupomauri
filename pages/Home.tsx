@@ -17,7 +17,7 @@ const stagger = {
 const scrollTo = (id: string) => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
 
 const Eyebrow: React.FC<{ children: React.ReactNode }> = ({ children }) => (
-  <span className="font-lato text-xs uppercase tracking-[0.3em] text-mauri-red font-bold mb-5 block">
+  <span className="font-lato text-xs uppercase tracking-[0.3em] text-mauri-silver font-bold mb-5 block">
     {children}
   </span>
 );
@@ -30,7 +30,7 @@ const Home: React.FC = () => {
         {/* Imagem de fundo do hero (aparece quando public/hero-bg.png existir; some sem quebrar se ausente) */}
         <div className="pointer-events-none absolute inset-0 z-0" aria-hidden="true">
           <div
-            className="absolute right-0 top-0 h-full w-full md:w-3/4 bg-no-repeat bg-right bg-cover opacity-80"
+            className="absolute right-0 top-0 h-full w-full md:w-3/4 bg-no-repeat bg-right bg-cover opacity-80 grayscale"
             style={{ backgroundImage: "url('/hero-bg.png')" }}
           />
           <div className="absolute inset-0 bg-gradient-to-r from-mauri-black via-mauri-black/70 to-transparent" />
@@ -47,7 +47,7 @@ const Home: React.FC = () => {
               className="font-fraunces font-semibold text-4xl md:text-5xl lg:text-6xl leading-[1.08] mb-8 max-w-4xl"
             >
               Tecnologia, cloud e marca para empresas que precisam crescer com mais{' '}
-              <span className="text-mauri-red">estrutura</span>.
+              <span className="italic">estrutura</span>.
             </motion.h1>
             <motion.p
               variants={fadeInUp}
@@ -77,7 +77,7 @@ const Home: React.FC = () => {
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-80px' }} variants={fadeInUp}>
             <Eyebrow>Como atuamos</Eyebrow>
             <h2 className="font-fraunces font-semibold text-3xl md:text-4xl lg:text-5xl leading-tight mb-8">
-              Frentes especializadas. Uma visão integrada de <span className="text-mauri-red">negócio</span>.
+              Frentes especializadas. Uma visão integrada de <span className="italic">negócio</span>.
             </h2>
             <p className="font-lato text-white/70 text-lg leading-relaxed font-light">
               Cada frente do Grupo Mauri tem foco, linguagem e metodologia próprios. Isso permite atuar com profundidade
@@ -105,11 +105,11 @@ const Home: React.FC = () => {
                 }`}
               >
                 <div className="md:col-span-2">
-                  <span className="font-fraunces text-6xl md:text-7xl text-mauri-red/25 leading-none">{f.numero}</span>
+                  <span className="font-fraunces text-6xl md:text-7xl text-white/15 leading-none">{f.numero}</span>
                 </div>
                 <div className="md:col-span-7">
                   <h3 className="font-fraunces font-semibold text-2xl md:text-3xl mb-3">{f.nome}</h3>
-                  <p className="font-lato text-mauri-red text-base md:text-lg font-medium mb-4">{f.destaque}</p>
+                  <p className="font-lato text-mauri-silver text-base md:text-lg font-medium mb-4">{f.destaque}</p>
                   <p className="font-lato text-white/60 font-light leading-relaxed max-w-xl">{f.descricao}</p>
                 </div>
                 <div className="md:col-span-3 md:text-right">
@@ -148,11 +148,11 @@ const Home: React.FC = () => {
 
       {/* CTA FINAL */}
       <section className="py-28 px-6 relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-mauri-red/5 rounded-full blur-[120px] pointer-events-none" />
+        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-white/[0.04] rounded-full blur-[120px] pointer-events-none" />
         <div className="max-w-4xl mx-auto relative z-10">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp}>
             <h2 className="font-fraunces font-semibold text-3xl md:text-4xl lg:text-5xl leading-tight mb-6">
-              Qual solução faz mais sentido para o <span className="text-mauri-red">momento</span> da sua empresa?
+              Qual solução faz mais sentido para o <span className="italic">momento</span> da sua empresa?
             </h2>
             <p className="font-lato text-white/70 text-lg font-light mb-10 max-w-2xl leading-relaxed">
               Tecnologia, cloud ou marca: cada área tem uma abordagem própria, mas todas partem da mesma lógica,
@@ -176,7 +176,7 @@ const Home: React.FC = () => {
               href={WHATSAPP_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="font-lato text-sm text-white/60 hover:text-white transition-colors border-b border-mauri-red pb-1"
+              className="font-lato text-sm text-white/60 hover:text-white transition-colors border-b border-mauri-silver pb-1"
             >
               Não sei, quero um diagnóstico
             </a>

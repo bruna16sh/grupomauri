@@ -6,7 +6,7 @@ import Home from './pages/Home';
 
 const App: React.FC = () => {
   return (
-    <div className="relative min-h-screen text-mauri-white selection:bg-mauri-red selection:text-white">
+    <div className="relative min-h-screen text-mauri-white selection:bg-mauri-silver selection:text-mauri-black">
       <Background />
       <Navigation />
       <main>

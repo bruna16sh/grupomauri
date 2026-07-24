@@ -45,7 +45,7 @@ const Footer: React.FC = () => {
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Instagram do Grupo Mauri"
-            className="w-10 h-10 shrink-0 border border-white/20 rounded-full flex items-center justify-center hover:bg-mauri-red hover:border-mauri-red transition-all duration-300 text-white/60 hover:text-white"
+            className="w-10 h-10 shrink-0 border border-white/20 rounded-full flex items-center justify-center hover:bg-mauri-white hover:border-mauri-white transition-all duration-300 text-white/60 hover:text-mauri-black"
           >
             <Instagram size={18} />
           </a>

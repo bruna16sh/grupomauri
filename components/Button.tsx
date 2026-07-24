@@ -5,9 +5,9 @@ type Variant = 'primary' | 'outline' | 'text';
 const baseStyles = "inline-block text-center font-lato tracking-widest uppercase text-xs sm:text-sm font-bold py-4 px-8 transition-all duration-300 ease-out border cursor-pointer";
 
 const variants: Record<Variant, string> = {
-  primary: "border-mauri-white text-mauri-black bg-mauri-white hover:bg-mauri-red hover:text-white hover:border-mauri-red",
-  outline: "border-mauri-white text-mauri-white hover:bg-mauri-red hover:border-mauri-red bg-transparent",
-  text: "border-transparent text-mauri-white hover:text-mauri-red px-4",
+  primary: "border-mauri-white text-mauri-black bg-mauri-white hover:bg-transparent hover:text-mauri-white",
+  outline: "border-mauri-white text-mauri-white hover:bg-mauri-white hover:text-mauri-black bg-transparent",
+  text: "border-transparent text-mauri-white hover:text-mauri-silver px-4",
 };
 
 interface CommonProps {
