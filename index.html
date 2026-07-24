@@ -35,32 +35,114 @@
       }
     </script>
     <style>
-      body {
-        background-color: #0d0c07;
-        color: #ededed;
-        overflow-x: hidden;
+      /* ============ Tokens de profundidade (editorial tecnológico premium) ============ */
+      :root {
+        --bg-deep: #050504;
+        --bg-primary: #0a0908;
+        --bg-secondary: #0e0d0b;
+        --surface-1: #131210;
+        --surface-2: #181613;
+        --text-primary: #f0eee8;
+        --text-secondary: #b7b4ac;
+        --text-muted: #86837c;
+        --border-subtle: rgba(255, 255, 255, 0.07);
+        --border-medium: rgba(255, 255, 255, 0.12);
+        --border-strong: rgba(255, 255, 255, 0.20);
+        --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+        --dur: 200ms;
       }
-      /* Gradiente prata metálico (efeito chrome/futurista) para títulos */
+
+      html { scroll-behavior: smooth; }
+
+      body {
+        background-color: var(--bg-primary);
+        color: var(--text-primary);
+        overflow-x: hidden;
+        -webkit-font-smoothing: antialiased;
+        text-rendering: optimizeLegibility;
+      }
+
+      /* Título metálico (chrome discreto), refinado para mais contraste/legibilidade */
       .title-silver {
-        background: linear-gradient(180deg, #ffffff 0%, #e6e7ea 38%, #b8bac0 72%, #90929a 100%);
+        background: linear-gradient(180deg, #ffffff 0%, #eceef1 34%, #cfd1d6 70%, #b6b8bf 100%);
         -webkit-background-clip: text;
         background-clip: text;
         -webkit-text-fill-color: transparent;
         color: transparent;
       }
-      /* Custom Scrollbar for a premium feel */
-      ::-webkit-scrollbar {
-        width: 8px;
+
+      /* Equilíbrio de quebra de linha dos títulos */
+      .balance { text-wrap: balance; }
+
+      /* Escala tipográfica fluida (moderada, não oversized) */
+      .h-hero {
+        font-size: clamp(2.35rem, 1.4rem + 3.4vw, 3.85rem);
+        line-height: 1.07;
+        letter-spacing: -0.018em;
       }
-      ::-webkit-scrollbar-track {
-        background: #0d0c07;
+      .h-section {
+        font-size: clamp(1.85rem, 1.2rem + 2.4vw, 2.95rem);
+        line-height: 1.12;
+        letter-spacing: -0.014em;
       }
-      ::-webkit-scrollbar-thumb {
-        background: #333;
-        border-radius: 4px;
+      .measure { max-width: 68ch; }
+
+      /* Linha estrutural que esmaece nas pontas (transição entre seções) */
+      .hairline {
+        height: 1px;
+        background: linear-gradient(90deg, transparent, var(--border-medium) 22%, var(--border-medium) 78%, transparent);
       }
-      ::-webkit-scrollbar-thumb:hover {
-        background: #c7c9ce;
+
+      /* Superfície elevada por camadas (CTA e hover das soluções) */
+      .surface-elevated {
+        background:
+          radial-gradient(130% 150% at 50% 0%, rgba(255, 255, 255, 0.04), transparent 55%),
+          linear-gradient(180deg, rgba(255, 255, 255, 0.022), rgba(255, 255, 255, 0.004)),
+          var(--surface-1);
+        border-top: 1px solid var(--border-subtle);
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03), 0 40px 120px rgba(0, 0, 0, 0.35);
+      }
+
+      /* Sublinhado animado para links textuais */
+      .link-underline { position: relative; }
+      .link-underline::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: -2px;
+        width: 100%;
+        height: 1px;
+        background: currentColor;
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform var(--dur) var(--ease-out);
+        opacity: 0.55;
+      }
+      .link-underline:hover::after,
+      .link-underline:focus-visible::after { transform: scaleX(1); }
+
+      /* Foco visível consistente e acessível */
+      a:focus-visible,
+      button:focus-visible {
+        outline: none;
+        box-shadow: 0 0 0 2px var(--bg-primary), 0 0 0 4px rgba(255, 255, 255, 0.55);
+        border-radius: 2px;
+      }
+
+      /* Scrollbar */
+      ::-webkit-scrollbar { width: 9px; }
+      ::-webkit-scrollbar-track { background: var(--bg-deep); }
+      ::-webkit-scrollbar-thumb { background: #2a2a26; border-radius: 6px; border: 2px solid var(--bg-deep); }
+      ::-webkit-scrollbar-thumb:hover { background: #3d3d38; }
+
+      /* Redução de movimento */
+      @media (prefers-reduced-motion: reduce) {
+        html { scroll-behavior: auto; }
+        *, *::before, *::after {
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.01ms !important;
+        }
       }
     </style>
 </head>

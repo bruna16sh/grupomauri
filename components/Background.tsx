@@ -1,41 +1,36 @@
 import React from 'react';
 
+/**
+ * Camada de fundo fixa: gradiente tonal contínuo (profundidade por plano) +
+ * textura de grão sutil + vinheta. Faz a página inteira parecer uma única
+ * composição, sem cortes rígidos entre seções.
+ */
 const Background: React.FC = () => {
   return (
-    <div className="fixed inset-0 z-[-1] pointer-events-none bg-mauri-black">
-      {/* 
-         TEXTURA PROCEDURAL AVANÇADA 
-         Recria o efeito de 'papel martelado/couro' usando luz e ruído fractal.
-      */}
-      <svg className="absolute inset-0 w-full h-full opacity-[0.12] mix-blend-soft-light">
-        <filter id="hammeredPaper">
-          {/* Gera o ruído base (a granulação) */}
-          <feTurbulence 
-            type="fractalNoise" 
-            baseFrequency="0.60" 
-            numOctaves="4" 
-            stitchTiles="stitch" 
-            result="noise"
-          />
-          
-          {/* Aplica iluminação para criar o relevo 3D (picos e vales) da textura */}
-          <feDiffuseLighting 
-            in="noise" 
-            lightingColor="#ffffff" 
-            surfaceScale="2" 
-            result="light"
-          >
-            <feDistantLight azimuth="45" elevation="35" />
+    <div
+      className="fixed inset-0 z-[-1] pointer-events-none"
+      aria-hidden="true"
+      style={{
+        background:
+          'linear-gradient(180deg, var(--bg-deep) 0%, var(--bg-primary) 20%, var(--bg-secondary) 48%, var(--bg-primary) 76%, var(--bg-deep) 100%)',
+      }}
+    >
+      {/* Textura procedural de grão (papel/relevo), bem discreta */}
+      <svg className="absolute inset-0 w-full h-full opacity-[0.06] mix-blend-soft-light">
+        <filter id="grain">
+          <feTurbulence type="fractalNoise" baseFrequency="0.62" numOctaves="4" stitchTiles="stitch" result="noise" />
+          <feDiffuseLighting in="noise" lightingColor="#ffffff" surfaceScale="2" result="light">
+            <feDistantLight azimuth="45" elevation="34" />
           </feDiffuseLighting>
         </filter>
-        <rect width="100%" height="100%" filter="url(#hammeredPaper)" />
+        <rect width="100%" height="100%" filter="url(#grain)" />
       </svg>
-      
-      {/* Iluminação de Estúdio (Vignette) */}
-      <div className="absolute inset-0 bg-gradient-radial from-transparent via-black/40 to-black/90" />
-      
-      {/* Gradiente sutil de topo para baixo para profundidade extra */}
-      <div className="absolute inset-0 bg-gradient-to-b from-white/[0.03] to-transparent" />
+
+      {/* Vinheta ambiente: mantém o centro respirando, escurece as bordas */}
+      <div
+        className="absolute inset-0"
+        style={{ background: 'radial-gradient(125% 80% at 50% 28%, transparent, rgba(0,0,0,0.55) 100%)' }}
+      />
     </div>
   );
 };

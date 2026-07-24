@@ -2,11 +2,11 @@ import React from 'react';
 
 type Variant = 'primary' | 'outline' | 'text';
 
-const baseStyles = "inline-block text-center font-lato tracking-widest uppercase text-xs sm:text-sm font-bold py-4 px-8 transition-all duration-300 ease-out border cursor-pointer";
+const baseStyles = "inline-flex items-center justify-center min-h-[44px] text-center font-lato tracking-widest uppercase text-xs sm:text-sm font-bold py-3.5 px-8 border cursor-pointer transition-[background-color,color,border-color,box-shadow,transform] duration-200 ease-out active:translate-y-px";
 
 const variants: Record<Variant, string> = {
-  primary: "border-mauri-white text-mauri-black bg-mauri-white hover:bg-transparent hover:text-mauri-white",
-  outline: "border-mauri-white text-mauri-white hover:bg-mauri-white hover:text-mauri-black bg-transparent",
+  primary: "border-mauri-white text-mauri-black bg-mauri-white hover:bg-white/90 hover:border-white/90",
+  outline: "border-white/25 text-mauri-white bg-white/[0.02] hover:bg-mauri-white hover:text-mauri-black hover:border-mauri-white",
   text: "border-transparent text-mauri-white hover:text-mauri-silver px-4",
 };
 
