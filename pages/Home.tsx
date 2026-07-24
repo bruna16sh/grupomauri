@@ -78,7 +78,10 @@ const Home: React.FC = () => {
       </section>
 
       {/* ============ COMO ATUAMOS ============ */}
-      <section id="como-atuamos" className="relative section-y px-6 overflow-hidden">
+      <section
+        id="como-atuamos"
+        className="relative pt-[clamp(4rem,3rem+4vw,6.25rem)] pb-[clamp(2.5rem,1.5rem+3vw,4rem)] px-6 overflow-hidden"
+      >
         {/* Iluminação ambiente central, contida na própria seção */}
         <div className="pointer-events-none absolute inset-0 flex items-center justify-center" aria-hidden="true">
           <div
@@ -102,12 +105,11 @@ const Home: React.FC = () => {
       </section>
 
       {/* ============ SOLUÇÕES ============ */}
-      <section id="solucoes" className="relative section-y px-6">
+      <section
+        id="solucoes"
+        className="relative pt-[clamp(1.5rem,0.5rem+3vw,3rem)] pb-[clamp(4rem,3rem+4vw,6.25rem)] px-6"
+      >
         <div className="relative max-w-[1120px] mx-auto">
-          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp} className="mb-8 md:mb-10">
-            <Eyebrow>Soluções</Eyebrow>
-          </motion.div>
-
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-60px' }} variants={stagger}>
             {frentes.map((f, i) => (
               <motion.div key={f.nome} variants={fadeInUp} className="group relative">
@@ -123,7 +125,11 @@ const Home: React.FC = () => {
                     aria-hidden="true"
                   />
                 )}
-                <div className="relative grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-10 items-center py-11 md:py-14">
+                <div
+                  className={`relative grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-10 items-center ${
+                    i === 0 ? 'pt-4 pb-11 md:pt-6 md:pb-14' : 'py-11 md:py-14'
+                  }`}
+                >
                   <div className="md:col-span-2">
                     <span className="font-fraunces text-5xl md:text-7xl text-white/15 group-hover:text-white/35 leading-none transition-colors duration-200 tabular-nums">
                       {f.numero}
@@ -159,16 +165,18 @@ const Home: React.FC = () => {
       </section>
 
       {/* ============ CTA FINAL ============ */}
-      <section className="relative section-y px-6 overflow-hidden text-center">
-        {/* Iluminação ambiente central (presença visual sem virar card) */}
-        <div className="pointer-events-none absolute inset-0 flex items-start justify-center" aria-hidden="true">
-          <div
-            className="w-[680px] max-w-[120%] h-[460px] rounded-full blur-[140px]"
-            style={{ background: 'radial-gradient(circle, rgba(255,255,255,0.045), transparent 66%)' }}
-          />
-        </div>
-        <div className="relative z-10 max-w-[720px] mx-auto flex flex-col items-center">
-          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp} className="flex flex-col items-center">
+      <section className="relative section-y px-6">
+        {/* Caixa cinza que destaca a seção, contida e com margem clara ao redor */}
+        <div className="cta-surface relative max-w-[960px] mx-auto rounded-[1.75rem] px-6 sm:px-12 py-16 md:py-20 text-center overflow-hidden">
+          {/* Iluminação ambiente central */}
+          <div className="pointer-events-none absolute inset-0 flex items-start justify-center" aria-hidden="true">
+            <div
+              className="w-[620px] max-w-[110%] h-[400px] rounded-full blur-[130px]"
+              style={{ background: 'radial-gradient(circle, rgba(255,255,255,0.05), transparent 66%)' }}
+            />
+          </div>
+          <div className="relative z-10 max-w-[720px] mx-auto flex flex-col items-center">
+            <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp} className="flex flex-col items-center">
             <h2 className="title-silver balance font-fraunces font-semibold h-section mb-6">
               Qual solução faz mais sentido para o <span className="italic">momento</span> da sua empresa?
             </h2>
@@ -198,7 +206,8 @@ const Home: React.FC = () => {
             >
               Não sei, quero um diagnóstico
             </a>
-          </motion.div>
+            </motion.div>
+          </div>
         </div>
       </section>
     </>
