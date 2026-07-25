@@ -22,7 +22,7 @@ export const frentes: Frente[] = [
     nome: 'FinOps Cloud',
     destaque: 'Reduzimos custos em cloud sem comprometer sua operação.',
     descricao: 'Diagnóstico e otimização de ambientes AWS, Google Cloud e Azure, com foco em economia real, segurança técnica e governança contínua.',
-    href: 'https://www.qorion.tech/',
+    href: 'https://finops.qorion.tech/',
   },
   {
     numero: '03',
