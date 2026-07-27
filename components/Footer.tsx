@@ -4,10 +4,6 @@ import Logo from './Logo';
 import { frentes, WHATSAPP_URL, INSTAGRAM_URL } from '../data/frentes';
 
 const Footer: React.FC = () => {
-  const scrollToSolucoes = () => {
-    document.getElementById('solucoes')?.scrollIntoView({ behavior: 'smooth' });
-  };
-
   return (
     <footer
       className="relative px-6 pt-20 pb-10 overflow-hidden"
@@ -36,13 +32,15 @@ const Footer: React.FC = () => {
         <div className="flex flex-col sm:flex-row gap-10 md:justify-end">
           <nav className="flex flex-col gap-3.5">
             {frentes.map((f) => (
-              <button
+              <a
                 key={f.nome}
-                onClick={scrollToSolucoes}
+                href={f.href}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="link-underline self-start text-left font-lato text-sm text-white/60 hover:text-white transition-colors duration-200"
               >
                 {f.nome}
-              </button>
+              </a>
             ))}
             <a
               href={WHATSAPP_URL}

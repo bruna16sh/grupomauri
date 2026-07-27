@@ -1,0 +1,14 @@
+{
+  "redirects": [
+    {
+      "source": "/insights",
+      "destination": "https://estrategia.grupomauri.com.br/insights",
+      "permanent": true
+    },
+    {
+      "source": "/insights/:path*",
+      "destination": "https://estrategia.grupomauri.com.br/insights/:path*",
+      "permanent": true
+    }
+  ]
+}
