@@ -35,7 +35,7 @@ const Home: React.FC = () => {
         <div className="pointer-events-none absolute inset-0 z-0" aria-hidden="true">
           <div
             className="absolute inset-0 bg-no-repeat bg-center bg-cover opacity-[0.42] grayscale"
-            style={{ backgroundImage: "url('/hero-bg.png')" }}
+            style={{ backgroundImage: "url('/hero-bg.webp')" }}
           />
           <div
             className="absolute inset-0"
