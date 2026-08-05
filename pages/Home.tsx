@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { ChevronDown, ArrowUpRight } from 'lucide-react';
 import Button from '../components/Button';
-import { frentes, WHATSAPP_URL } from '../data/frentes';
+import { unidades, WHATSAPP_URL } from '../data/unidades';
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 32 },
@@ -52,15 +52,15 @@ const Home: React.FC = () => {
               <Eyebrow>Grupo Mauri · Ecossistema de Soluções</Eyebrow>
             </motion.div>
             <motion.h1 variants={fadeInUp} className="title-silver balance font-fraunces font-semibold h-hero mb-7">
-              Tecnologia, cloud e marca para empresas que precisam crescer com mais{' '}
+              Tecnologia e estratégia de marca para empresas que precisam crescer com mais{' '}
               <span className="italic">estrutura</span>.
             </motion.h1>
             <motion.p
               variants={fadeInUp}
               className="font-lato font-light text-lg md:text-xl text-white/78 max-w-2xl mb-10 leading-[1.65]"
             >
-              O Grupo Mauri atua em frentes especializadas para ajudar empresas a construir soluções digitais,
-              otimizar custos em cloud e fortalecer posicionamento de mercado, com estratégia, método e visão de negócio.
+              O Grupo Mauri reúne unidades especializadas para desenvolver soluções tecnológicas, otimizar
+              investimentos em cloud e construir marcas com direção estratégica.
             </motion.p>
             <motion.div variants={fadeInUp}>
               <Button onClick={() => scrollTo('solucoes')}>Conheça nossas soluções</Button>
@@ -93,12 +93,10 @@ const Home: React.FC = () => {
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-80px' }} variants={fadeInUp}>
             <Eyebrow>Como atuamos</Eyebrow>
             <h2 className="title-silver balance font-fraunces font-semibold h-section mb-7">
-              Frentes especializadas. Uma visão integrada de <span className="italic">negócio</span>.
+              Unidades especializadas para diferentes desafios do <span className="italic">negócio</span>.
             </h2>
             <p className="font-lato text-white/78 text-lg leading-[1.65] font-light measure mx-auto">
-              Cada frente do Grupo Mauri tem foco, linguagem e metodologia próprios. Isso permite atuar com profundidade
-              em tecnologia, cloud e marca, sem perder a visão estratégica do todo. Quando o projeto exige integração,
-              conectamos as frentes. Quando exige especialização, cada uma atua com autonomia e precisão.
+              Cada unidade reúne conhecimento, processos e soluções próprias, mantendo a visão integrada do Grupo Mauri.
             </p>
           </motion.div>
         </div>
@@ -111,8 +109,8 @@ const Home: React.FC = () => {
       >
         <div className="relative max-w-[1120px] mx-auto">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-60px' }} variants={stagger}>
-            {frentes.map((f, i) => (
-              <motion.div key={f.nome} variants={fadeInUp} className="group relative">
+            {unidades.map((u, i) => (
+              <motion.div key={u.nome} variants={fadeInUp} className="group relative">
                 {/* Superfície de hover (não desloca o layout) */}
                 <div
                   className="pointer-events-none absolute inset-y-2 -inset-x-5 md:-inset-x-7 rounded-2xl bg-white/0 group-hover:bg-white/[0.022] transition-colors duration-200"
@@ -126,31 +124,48 @@ const Home: React.FC = () => {
                   />
                 )}
                 <div
-                  className={`relative grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-10 items-center ${
+                  className={`relative grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-10 items-start ${
                     i === 0 ? 'pt-4 pb-11 md:pt-6 md:pb-14' : 'py-11 md:py-14'
                   }`}
                 >
                   <div className="md:col-span-2">
                     <span className="font-fraunces text-5xl md:text-7xl text-white/15 group-hover:text-white/35 leading-none transition-colors duration-200 tabular-nums">
-                      {f.numero}
+                      {u.numero}
                     </span>
                   </div>
                   <div className="md:col-span-7">
                     <h3 className="title-silver font-fraunces font-semibold text-2xl md:text-3xl mb-3 inline-block">
-                      {f.nome}
+                      {u.nome}
                     </h3>
-                    <p className="font-lato text-mauri-silver text-base md:text-lg font-medium mb-4">{f.destaque}</p>
-                    <p className="font-lato text-white/72 font-light leading-[1.6] max-w-xl">{f.descricao}</p>
+                    <p className="font-lato text-mauri-silver text-base md:text-lg font-medium mb-4">{u.headline}</p>
+                    <p className="font-lato text-white/72 font-light leading-[1.6] max-w-xl mb-6">{u.descricao}</p>
+
+                    {u.highlight && (
+                      <div className="border border-white/[0.12] rounded-xl px-5 py-5 max-w-xl bg-white/[0.015]">
+                        <span className="inline-block font-lato text-[10px] uppercase tracking-[0.25em] text-mauri-silver font-semibold mb-2.5">
+                          {u.highlight.badge}
+                        </span>
+                        <p className="font-fraunces text-lg text-mauri-white mb-2">{u.highlight.title}</p>
+                        <p className="font-lato text-white/68 text-sm font-light leading-[1.6] mb-4">{u.highlight.text}</p>
+                        <a
+                          href={u.highlight.href}
+                          data-analytics="cta_finops_click"
+                          className="link-underline font-lato text-xs uppercase tracking-wide text-mauri-white hover:text-mauri-silver transition-colors inline-flex items-center gap-1.5"
+                        >
+                          {u.highlight.ctaLabel}
+                          <ArrowUpRight size={12} />
+                        </a>
+                      </div>
+                    )}
                   </div>
                   <div className="md:col-span-3 md:text-right">
                     <Button
-                      href={f.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
+                      href={u.href}
+                      data-analytics="outbound_brand_click"
                       variant="outline"
                       className="!py-3 !px-6 !text-xs inline-flex items-center gap-2 group-hover:border-white/40"
                     >
-                      Conhecer mais
+                      {u.ctaLabel}
                       <ArrowUpRight
                         size={14}
                         className="transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
@@ -182,19 +197,19 @@ const Home: React.FC = () => {
             </h2>
             <p className="font-lato text-white/78 text-lg font-light mb-10 max-w-2xl mx-auto leading-[1.65]">
               Há mais de 5 anos, atuamos com tecnologia, cloud e estratégia de marca com uma mesma lógica: entender o
-              negócio antes de propor a solução, com experiência certificada em AWS, Google Cloud, Azure e Oracle Cloud.
+              negócio antes de propor a solução, com experiência certificada em AWS, Google Cloud, Microsoft Azure e
+              Oracle Cloud.
             </p>
             <div className="flex flex-col sm:flex-row flex-wrap justify-center gap-3 sm:gap-4 mb-8 w-full sm:w-auto">
-              {frentes.map((f) => (
+              {unidades.map((u) => (
                 <Button
-                  key={f.nome}
-                  href={f.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  key={u.nome}
+                  href={u.href}
+                  data-analytics="outbound_brand_click"
                   variant="outline"
                   className="!py-3 !px-6 !text-xs w-full sm:w-auto"
                 >
-                  {f.nome}
+                  {u.nome}
                 </Button>
               ))}
             </div>
@@ -202,6 +217,7 @@ const Home: React.FC = () => {
               href={WHATSAPP_URL}
               target="_blank"
               rel="noopener noreferrer"
+              data-analytics="whatsapp_click"
               className="font-lato text-sm text-white/65 hover:text-white transition-colors border-b border-white/30 hover:border-white pb-1"
             >
               Não sei, quero um diagnóstico

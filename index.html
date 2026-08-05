@@ -4,33 +4,67 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-SERWWENX68"></script>
+    <!--
+      Consent Mode: nada de analytics ou anúncio é armazenado antes da
+      escolha. Precisa vir ANTES do gtag.js para valer no primeiro hit.
+      A escolha já tomada é reaplicada aqui, para não esperar o React.
+    -->
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
+
+      gtag('consent', 'default', {
+        ad_storage: 'denied',
+        ad_user_data: 'denied',
+        ad_personalization: 'denied',
+        analytics_storage: 'denied',
+        functionality_storage: 'granted',
+        security_storage: 'granted',
+        wait_for_update: 500
+      });
+
+      (function () {
+        try {
+          var row = document.cookie.split('; ').filter(function (c) {
+            return c.indexOf('gm_consent=') === 0;
+          })[0];
+          if (row && row.split('=')[1] === 'granted') {
+            gtag('consent', 'update', {
+              ad_storage: 'granted',
+              ad_user_data: 'granted',
+              ad_personalization: 'granted',
+              analytics_storage: 'granted'
+            });
+          }
+        } catch (e) {}
+      })();
+    </script>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-SERWWENX68"></script>
+    <script>
       gtag('js', new Date());
       gtag('config', 'G-SERWWENX68');
     </script>
 
-    <title>Grupo Mauri | Ecossistema de tecnologia, cloud e marca</title>
-    <meta name="description" content="O Grupo Mauri atua em frentes especializadas: tecnologia e IA, otimização de custos em cloud (FinOps) e branding e marketing, com estratégia e visão de negócio." />
+    <title>Grupo Mauri | Tecnologia e Estratégia de Marca</title>
+    <meta name="description" content="O Grupo Mauri reúne a Qorion, especializada em FinOps, cloud, software, dados e IA, e a Mauri Estratégia, focada em branding e marketing." />
     <meta name="robots" content="index, follow" />
     <link rel="canonical" href="https://grupomauri.com.br/" />
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://grupomauri.com.br/" />
-    <meta property="og:title" content="Grupo Mauri | Ecossistema de tecnologia, cloud e marca" />
-    <meta property="og:description" content="O Grupo Mauri atua em frentes especializadas: tecnologia e IA, otimização de custos em cloud (FinOps) e branding e marketing, com estratégia e visão de negócio." />
+    <meta property="og:title" content="Grupo Mauri | Tecnologia e Estratégia de Marca" />
+    <meta property="og:description" content="O Grupo Mauri reúne a Qorion, especializada em FinOps, cloud, software, dados e IA, e a Mauri Estratégia, focada em branding e marketing." />
     <meta property="og:image" content="https://grupomauri.com.br/logo.png" />
     <meta property="og:locale" content="pt_BR" />
     <meta property="og:site_name" content="Grupo Mauri" />
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Grupo Mauri | Ecossistema de tecnologia, cloud e marca" />
-    <meta name="twitter:description" content="O Grupo Mauri atua em frentes especializadas: tecnologia e IA, otimização de custos em cloud (FinOps) e branding e marketing, com estratégia e visão de negócio." />
+    <meta name="twitter:title" content="Grupo Mauri | Tecnologia e Estratégia de Marca" />
+    <meta name="twitter:description" content="O Grupo Mauri reúne a Qorion, especializada em FinOps, cloud, software, dados e IA, e a Mauri Estratégia, focada em branding e marketing." />
     <meta name="twitter:image" content="https://grupomauri.com.br/logo.png" />
 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -43,7 +77,7 @@
       "@type": "Organization",
       "name": "Grupo Mauri",
       "url": "https://grupomauri.com.br",
-      "description": "Ecossistema de tecnologia, cloud e marca para empresas que precisam crescer com mais estrutura.",
+      "description": "O Grupo Mauri reúne a Qorion, unidade de tecnologia especializada em FinOps, cloud, software, dados e IA, e a Mauri Estratégia, unidade de branding e marketing.",
       "sameAs": [
         "https://www.instagram.com/grupomauri/",
         "https://www.qorion.tech/",

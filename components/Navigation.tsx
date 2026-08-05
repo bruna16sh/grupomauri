@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import Button from './Button';
 import Logo from './Logo';
-import { frentes, WHATSAPP_URL } from '../data/frentes';
+import { unidades, WHATSAPP_URL } from '../data/unidades';
 
 const Navigation: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -39,19 +39,20 @@ const Navigation: React.FC = () => {
 
         {/* Desktop Menu */}
         <div className="hidden md:flex items-center gap-9">
-          {frentes.map((f) => (
+          {unidades.map((u) => (
             <button
-              key={f.nome}
+              key={u.nome}
               onClick={() => scrollToSection('solucoes')}
               className="link-underline font-lato text-[13px] tracking-wide text-white/65 hover:text-white transition-colors duration-200"
             >
-              {f.nome}
+              {u.nome}
             </button>
           ))}
           <Button
             href={WHATSAPP_URL}
             target="_blank"
             rel="noopener noreferrer"
+            data-analytics="whatsapp_click"
             variant="outline"
             className="!py-2.5 !px-5 !text-[11px]"
           >
@@ -73,19 +74,20 @@ const Navigation: React.FC = () => {
       {/* Mobile Menu */}
       {mobileMenuOpen && (
         <div className="absolute top-full inset-x-0 bg-[#0a0908]/95 backdrop-blur-xl border-b border-white/[0.08] px-6 py-7 md:hidden flex flex-col gap-6 shadow-2xl">
-          {frentes.map((f) => (
+          {unidades.map((u) => (
             <button
-              key={f.nome}
+              key={u.nome}
               onClick={() => scrollToSection('solucoes')}
               className="text-left font-lato text-white/85 hover:text-white transition-colors"
             >
-              {f.nome}
+              {u.nome}
             </button>
           ))}
           <Button
             href={WHATSAPP_URL}
             target="_blank"
             rel="noopener noreferrer"
+            data-analytics="whatsapp_click"
             variant="primary"
             className="w-full"
           >

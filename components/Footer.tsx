@@ -1,7 +1,7 @@
 import React from 'react';
 import { Instagram } from 'lucide-react';
 import Logo from './Logo';
-import { frentes, WHATSAPP_URL, INSTAGRAM_URL } from '../data/frentes';
+import { unidades, WHATSAPP_URL, INSTAGRAM_URL } from '../data/unidades';
 
 const Footer: React.FC = () => {
   return (
@@ -25,21 +25,20 @@ const Footer: React.FC = () => {
             <Logo className="h-10 w-auto" />
           </div>
           <p className="font-lato text-sm text-white/55 leading-[1.7]">
-            Ecossistema de tecnologia, cloud e marca para empresas que precisam crescer com mais estrutura.
+            Tecnologia e estratégia de marca para empresas que precisam crescer com mais estrutura.
           </p>
         </div>
 
         <div className="flex flex-col sm:flex-row gap-10 md:justify-end">
           <nav className="flex flex-col gap-3.5">
-            {frentes.map((f) => (
+            {unidades.map((u) => (
               <a
-                key={f.nome}
-                href={f.href}
-                target="_blank"
-                rel="noopener noreferrer"
+                key={u.nome}
+                href={u.href}
+                data-analytics="outbound_brand_click"
                 className="link-underline self-start text-left font-lato text-sm text-white/60 hover:text-white transition-colors duration-200"
               >
-                {f.nome}
+                {u.nome}
               </a>
             ))}
             <a
@@ -63,10 +62,16 @@ const Footer: React.FC = () => {
         </div>
       </div>
 
-      <div className="relative max-w-[1120px] mx-auto mt-14 pt-8 border-t border-white/[0.06]">
+      <div className="relative max-w-[1120px] mx-auto mt-14 pt-8 border-t border-white/[0.06] flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
         <p className="font-lato text-xs text-white/40 uppercase tracking-[0.18em]">
           © {new Date().getFullYear()} Grupo Mauri. Todos os direitos reservados.
         </p>
+        <a
+          href="/privacidade"
+          className="link-underline self-start font-lato text-xs text-white/40 hover:text-white/70 uppercase tracking-[0.18em] transition-colors duration-200"
+        >
+          Política de Privacidade
+        </a>
       </div>
     </footer>
   );
